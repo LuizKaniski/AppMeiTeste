@@ -42,7 +42,7 @@ export default function HomePage({ route }) {
   const getStatusImage = (status) => {
     switch (status) {
       case 'check':
-        return require('./assets/verificar.png');
+        return require('./assets/verificado.png');
       case 'close':
         return require('./assets/botao-x.png');
       case 'espera':

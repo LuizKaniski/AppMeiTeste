@@ -9,7 +9,6 @@ export default function LoginPage({ navigation }) {
   const [cnpj, setCnpj] = useState('');
 
   const handleLogin = async () => {
-    console.log('Dados de login:', cnpj);
     try {
       const response = await axios.post('http://192.168.0.12:3000/login', { cnpj });
       console.log('Resposta da requisição:', response);

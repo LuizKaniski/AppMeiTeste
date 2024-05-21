@@ -1,11 +1,17 @@
 import React from 'react';
-import { Image, Text, View, StyleSheet } from 'react-native';
+import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const CustomHeader = ({ route }) => {
+  const navigation = useNavigation();
+  
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerContent}>
-        <Image source={require('./assets/perfil.png')} style={styles.profileImage} />
+        <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
+        <Image source={require('./assets/barra-de-menu.png')} style={styles.menuIcon} />
+        </TouchableOpacity>
         <View>
           <Text style={styles.welcomeText}>Bem-Vindo</Text>
           <Text style={styles.clientName}>{route.params?.nome || 'Nome do cliente'}</Text>
@@ -19,28 +25,30 @@ const CustomHeader = ({ route }) => {
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: '#1F1E1E',
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 10,
-    elevation: 5, // Aumente o valor para tornar a sombra mais forte no Android
-    position:'absolute',
-    width:"100%",
+    elevation: 5,
+    position: 'absolute',
+    width: '100%',
+    paddingTop: 2, // Ajuste para status bar
   },
   headerContent: {
     flexDirection: 'row',
     alignItems: 'center',
     height: 80,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
+    width: '90%',
   },
-  profileImage: {
-    width: 40,
-    height: 40,
+  menuIcon: {
     marginRight: 15,
+    width:40,
+    height:40,
   },
   welcomeText: {
     fontSize: 18,
